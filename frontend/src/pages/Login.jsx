@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -71,7 +70,7 @@ export default function Login() {
     return (
         <main className="min-h-screen bg-page text-heading lg:grid lg:grid-cols-2">
             {/* Brand panel */}
-            <section className="relative flex min-h-[330px] flex-col overflow-hidden bg-brand-dark px-7 py-8 text-on-dark sm:px-12 sm:py-10 lg:min-h-screen lg:px-14 xl:px-20">
+            <section className="relative hidden min-h-screen flex-col overflow-hidden bg-brand-dark px-7 py-8 text-on-dark lg:flex lg:px-14 xl:px-20">
                 <div
                     aria-hidden="true"
                     className="pointer-events-none absolute -right-24 top-24 h-72 w-72 rounded-full border border-white/10 sm:h-96 sm:w-96"
@@ -122,8 +121,8 @@ export default function Login() {
             </section>
 
             {/* Login panel */}
-            <section className="flex min-h-[580px] items-center justify-center px-6 py-12 sm:px-10 lg:min-h-screen lg:px-12 xl:px-16">
-                <div className="w-full max-w-[410px]">
+            <section className="flex min-h-145 items-center justify-center px-6 py-12 sm:px-10 lg:min-h-screen lg:px-12 xl:px-16">
+                <div className="w-full max-w-102.5">
                     <Link
                         to="/"
                         className="mb-10 inline-flex items-center gap-2 text-sm text-body transition hover:text-brand sm:mb-14"
@@ -155,7 +154,7 @@ export default function Login() {
                                 Admin username
                             </label>
 
-                            <div className="group flex h-[52px] items-center gap-3 rounded-lg border border-border bg-surface/70 px-4 transition focus-within:border-brand focus-within:bg-surface focus-within:ring-4 focus-within:ring-brand/10">
+                            <div className="group flex h-13 items-center gap-3 rounded-lg border border-border bg-surface/70 px-4 transition focus-within:border-brand focus-within:bg-surface focus-within:ring-4 focus-within:ring-brand/10">
                                 <FiUser
                                     className="shrink-0 text-body group-focus-within:text-brand"
                                     size={18}
@@ -184,7 +183,7 @@ export default function Login() {
                                 Password
                             </label>
 
-                            <div className="group flex h-[52px] items-center gap-3 rounded-lg border border-border bg-surface/70 px-4 transition focus-within:border-brand focus-within:bg-surface focus-within:ring-4 focus-within:ring-brand/10">
+                            <div className="group flex h-13 items-center gap-3 rounded-lg border border-border bg-surface/70 px-4 transition focus-within:border-brand focus-within:bg-surface focus-within:ring-4 focus-within:ring-brand/10">
                                 <FiLock
                                     className="shrink-0 text-body group-focus-within:text-brand"
                                     size={18}
@@ -230,7 +229,7 @@ export default function Login() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="group flex h-[52px] w-full items-center justify-center gap-2 rounded-lg bg-brand px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-hover focus:outline-none focus:ring-4 focus:ring-brand/20 disabled:cursor-not-allowed disabled:opacity-70"
+                            className="group flex h-13 w-full items-center justify-center gap-2 rounded-lg bg-brand px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-hover focus:outline-none focus:ring-4 focus:ring-brand/20 disabled:cursor-not-allowed disabled:opacity-70"
                         >
                             {loading ? "Signing you in..." : "Sign in to Aaangan"}
 

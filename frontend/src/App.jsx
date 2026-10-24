@@ -1,31 +1,31 @@
 
 import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
+
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Children from "./pages/Children";
+import Donation from "./pages/Donation";
+import Expenses from "./pages/Expenses";
+import Reports from "./pages/Reports";
+
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdminLayout from "./components/AdminLayout";
 
 export default function App() {
   return (
     <Routes>
-      {/* Public pages */}
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
 
-      {/* Protected admin pages */}
       <Route element={<ProtectedRoute />}>
-        <Route
-          path="/dashboard"
-          element={
-            <div className="min-h-screen bg-page p-8 text-heading">
-              <h1 className="text-3xl font-semibold">
-                Welcome to Aaangan Dashboard
-              </h1>
-              <p className="mt-3 text-body">
-                Your admin dashboard will be built here next.
-              </p>
-            </div>
-          }
-        />
+        <Route element={<AdminLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/children" element={<Children />} />
+          <Route path="/donations" element={<Donation />} />
+          <Route path="/expenses" element={<Expenses />} />
+          <Route path="/reports" element={<Reports />} />
+        </Route>
       </Route>
     </Routes>
   );
