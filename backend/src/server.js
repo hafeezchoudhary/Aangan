@@ -11,6 +11,7 @@ const childRoutes = require("./routes/childRoutes");
 const donationRoutes = require("./routes/donationRoutes");
 const expenseRoutes = require("./routes/expenseRoutes");
 const reportRoutes = require("./routes/reportRoutes");
+const staffRoutes = require("./routes/staffRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
 
 const app = express();
@@ -31,7 +32,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// API status
 app.get("/", (req, res) => {
     res.json({ message: "Aaangan API is running" });
 });
@@ -40,16 +40,14 @@ app.get("/api/health", (req, res) => {
     res.json({ status: "ok", app: "Aaangan API" });
 });
 
-// Authentication
 app.use("/api/auth", authRoutes);
 
-// Protected modules
 app.use("/api/children", childRoutes);
 app.use("/api/donations", donationRoutes);
 app.use("/api/expenses", expenseRoutes);
 app.use("/api/reports", reportRoutes);
+app.use("/api/staff", staffRoutes);
 
-// Protected authentication test
 app.get("/api/auth/protected", authMiddleware, (req, res) => {
     res.json({
         message: "Welcome to the protected Aaangan admin area",
