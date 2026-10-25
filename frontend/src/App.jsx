@@ -1,7 +1,6 @@
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Children from "./pages/Children";
@@ -15,7 +14,7 @@ import AdminLayout from "./components/AdminLayout";
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<Login />} />
 
       <Route element={<ProtectedRoute />}>
@@ -27,6 +26,8 @@ export default function App() {
           <Route path="/reports" element={<Reports />} />
         </Route>
       </Route>
+
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
 }

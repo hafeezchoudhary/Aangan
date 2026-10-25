@@ -279,12 +279,8 @@ export default function Dashboard() {
                         type="button"
                         onClick={fetchDashboard}
                         disabled={loading}
-                        className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 self-start rounded-md border border-[#dfddd3] bg-[#fffefd] px-4 py-2 text-sm font-medium text-[#35563a] transition hover:bg-[#f0eee6] disabled:cursor-not-allowed disabled:opacity-60 sm:self-auto"
-                    >
-                        <FiRefreshCw
-                            size={15}
-                            className={loading ? "animate-spin" : ""}
-                        />
+                        className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 self-start rounded-md border border-[#dfddd3] bg-[#fffefd] px-4 py-2 text-sm font-medium text-[#35563a] transition hover:bg-[#f0eee6] disabled:cursor-not-allowed disabled:opacity-60 sm:self-auto">
+                        <FiRefreshCw size={15} className={loading ? "animate-spin" : ""}/>
                         Refresh
                     </button>
                 </header>
@@ -292,8 +288,7 @@ export default function Dashboard() {
                 {error && (
                     <div
                         role="alert"
-                        className="mt-6 flex flex-col gap-3 rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-800 sm:flex-row sm:items-center sm:justify-between"
-                    >
+                        className="mt-6 flex flex-col gap-3 rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-800 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex items-start gap-2">
                             <FiAlertCircle className="mt-0.5 shrink-0" size={18} />
                             <p>{error}</p>
@@ -302,8 +297,7 @@ export default function Dashboard() {
                         <button
                             type="button"
                             onClick={fetchDashboard}
-                            className="self-start font-semibold underline"
-                        >
+                            className="self-start font-semibold underline">
                             Try again
                         </button>
                     </div>
@@ -311,16 +305,14 @@ export default function Dashboard() {
 
                 <section
                     aria-label="Summary"
-                    className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
-                >
+                    className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
                     {summaryCards.map(
                         ({ title, value, subtitle, icon: Icon, path }) => (
                             <Link
                                 key={title}
                                 to={path}
                                 aria-label={`Open ${title}`}
-                                className="group relative block min-w-0 rounded-md border border-[#dfddd3] bg-[#fffefd] p-5 transition duration-200 hover:-translate-y-1 hover:border-[#b9c9b3] hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#456748] sm:p-6"
-                            >
+                                className="group relative block min-w-0 rounded-md border border-[#dfddd3] bg-[#fffefd] p-5 transition duration-200 hover:-translate-y-1 hover:border-[#b9c9b3] hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#456748] sm:p-6">
                                 <span className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-[#35563a] opacity-0 transition-all duration-200 group-hover:bg-[#e0eadb] group-hover:opacity-100 group-focus-visible:opacity-100">
                                     <FiArrowUpRight size={20} />
                                 </span>
@@ -329,7 +321,7 @@ export default function Dashboard() {
                                     <Icon size={21} strokeWidth={1.8} />
                                 </div>
 
-                                <p className="mt-4 break-words font-serif text-2xl font-medium text-[#19251c] sm:text-[30px]">
+                                <p className="mt-4 wrap-break-word font-serif text-2xl font-medium text-[#19251c] sm:text-[30px]">
                                     {value}
                                 </p>
 

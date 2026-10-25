@@ -71,7 +71,7 @@ export default function Sidebar() {
                     </span>
 
                     <span className="text-sm font-semibold tracking-[0.12em]">
-                        SAANJH <span className="font-normal text-[#b7bdb3]">HOUSE</span>
+                        Aangan <span className="font-normal text-[#b7bdb3]">HOUSE</span>
                     </span>
                 </NavLink>
 
@@ -112,7 +112,7 @@ export default function Sidebar() {
                     </span>
 
                     <span className="whitespace-nowrap text-[17px] font-semibold tracking-[0.09em] text-[#f3f1e8]">
-                        SAANJH <span className="font-normal text-[#b1b8ae]">HOUSE</span>
+                        AANGAN
                     </span>
                 </NavLink>
 
