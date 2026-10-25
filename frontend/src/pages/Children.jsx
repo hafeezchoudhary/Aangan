@@ -247,7 +247,7 @@ export default function Children() {
 
     return (
         <main className="min-w-0 px-4 pb-10 pt-24 sm:px-6 md:px-8 md:pt-10 lg:px-10 xl:px-12">
-            <div className="mx-auto max-w-[1440px]">
+            <div className="mx-auto max-w-360">
                 <header className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                     <div>
                         <p className="text-xs font-semibold uppercase tracking-wide text-[#39553c]">
@@ -322,7 +322,7 @@ export default function Children() {
                         />
                     </label>
 
-                    <label className="relative flex min-h-11 min-w-[170px] items-center rounded-md border border-[#dfddd3] bg-[#fffefd] shadow-sm">
+                    <label className="relative flex min-h-11 min-w-42.5 items-center rounded-md border border-[#dfddd3] bg-[#fffefd] shadow-sm">
                         <span className="sr-only">Filter by status</span>
                         <select
                             value={status}
@@ -341,7 +341,7 @@ export default function Children() {
                 </section>
                 <section className="mt-5 overflow-hidden rounded-md border border-[#dfddd3] bg-[#fffefd]">
                     <div className="overflow-x-auto">
-                        <table className="w-full min-w-[980px] border-collapse text-left">
+                        <table className="w-full min-w-245 border-collapse text-left">
                             <thead>
                                 <tr className="border-b border-[#dfddd3] text-xs font-semibold text-[#596257]">
                                     <th className="px-5 py-4">Child</th>
@@ -390,9 +390,9 @@ export default function Children() {
                                             key={child._id}
                                             className="border-b border-[#e5e1d8] last:border-b-0 hover:bg-[#faf9f4]"
                                         >
-                                            <td className="max-w-[310px] px-5 py-4">
+                                            <td className="max-w-77.5 px-5 py-4">
                                                 <p className="font-medium text-[#19251c]">{child.fullName}</p>
-                                                <p className="mt-1 break-words text-xs leading-5 text-[#687367]">
+                                                <p className="mt-1 wrap-break-word text-xs leading-5 text-[#687367]">
                                                     {child.childId || "ID pending"} · {child.gender}
                                                     {child.notes ? ` · ${child.notes}` : ""}
                                                 </p>
@@ -403,7 +403,7 @@ export default function Children() {
                                             <td className="whitespace-nowrap px-4 py-4 text-sm text-[#19251c]">
                                                 {formatDate(child.admissionDate)}
                                             </td>
-                                            <td className="max-w-[200px] break-words px-4 py-4 text-sm text-[#19251c]">
+                                            <td className="max-w-50 wrap-break-word px-4 py-4 text-sm text-[#19251c]">
                                                 {child.guardianName || "—"}
                                             </td>
                                             <td className="px-4 py-4">
@@ -473,7 +473,7 @@ export default function Children() {
 
             {statusConfirmation && (
                 <div
-                    className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4"
+                    className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4"
                     onMouseDown={(event) => {
                         if (event.target === event.currentTarget && !statusUpdating) {
                             setStatusConfirmation(null);
@@ -552,7 +552,7 @@ export default function Children() {
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="child-modal-title"
-                        className="my-auto w-full max-w-[650px] rounded-lg border border-[#dfddd3] bg-[#f8f6f0] p-5 shadow-2xl sm:p-8"
+                        className="my-auto w-full max-w-162.5 rounded-lg border border-[#dfddd3] bg-[#f8f6f0] p-5 shadow-2xl sm:p-8"
                     >
                         <div className="flex items-start justify-between gap-4">
                             <div>
