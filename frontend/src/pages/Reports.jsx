@@ -256,8 +256,7 @@ export default function Reports() {
         {error && (
           <div
             role="alert"
-            className="mb-6 flex flex-col gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800 sm:flex-row sm:items-center sm:justify-between"
-          >
+            className="mb-6 flex flex-col gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-2">
               <FiAlertCircle className="mt-0.5 shrink-0" size={18} />
               <span>{error}</span>
@@ -266,8 +265,7 @@ export default function Reports() {
             <button
               type="button"
               onClick={fetchReport}
-              className="inline-flex items-center gap-2 self-start font-semibold underline"
-            >
+              className="inline-flex items-center gap-2 self-start font-semibold underline">
               <FiRefreshCw size={15} />
               Retry
             </button>
@@ -277,31 +275,26 @@ export default function Reports() {
         {/* Financial summary */}
         <section
           aria-label="Financial summary"
-          className="mb-9 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"
-        >
+          className="mb-9 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {summaryCards.map((card) => {
             const Icon = card.icon;
 
             return (
-              <article
-                key={card.title}
-                className="min-h-[121px] rounded border border-[#dedbd2] bg-[#fffefd] p-5 sm:p-6"
-              >
+              <article key={card.title} className="min-h-30.25 rounded border border-[#dedbd2] bg-[#fffefd] p-5 sm:p-6">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="text-sm font-medium text-[#555f54]">
                       {card.title}
                     </p>
 
-                    <p className="mt-2 break-words font-serif text-3xl text-[#263c2c] sm:text-[34px]">
+                    <p className="mt-2 wrap-break-word font-serif text-3xl text-[#263c2c] sm:text-[34px]">
                       {loading && !report ? "—" : card.value}
                     </p>
                   </div>
 
                   <Icon
                     size={20}
-                    className="mt-1 shrink-0 text-[#385b43]"
-                  />
+                    className="mt-1 shrink-0 text-[#385b43]"/>
                 </div>
               </article>
             );
@@ -349,13 +342,12 @@ export default function Reports() {
                       </div>
 
                       <div
-                        className="h-[9px] overflow-hidden rounded-full bg-[#f0eddf]"
+                        className="h-2.25 overflow-hidden rounded-full bg-[#f0eddf]"
                         role="progressbar"
                         aria-label={`${item.category} spending`}
                         aria-valuenow={amount}
                         aria-valuemin={0}
-                        aria-valuemax={maximumCategoryAmount}
-                      >
+                        aria-valuemax={maximumCategoryAmount}>
                         <div
                           className="h-full rounded-full bg-[#385b43] transition-all duration-500"
                           style={{ width: `${width}%` }}
@@ -388,8 +380,7 @@ export default function Reports() {
                 {monthlySummary.map((month) => (
                   <div
                     key={`${month.year}-${month.month}`}
-                    className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between"
-                  >
+                    className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
                     <p className="text-sm font-medium text-[#1e2a21]">
                       {month.label}
                     </p>
@@ -427,8 +418,7 @@ export default function Reports() {
                   type="button"
                   onClick={() => handleExport(button.type)}
                   disabled={Boolean(exporting)}
-                  className="inline-flex min-h-11 items-center justify-center gap-3 rounded border border-[#dedbd2] bg-[#faf9f5] px-4 py-2.5 text-sm font-medium text-[#26352a] shadow-sm transition hover:bg-[#f0eee5] disabled:cursor-not-allowed disabled:opacity-60"
-                >
+                  className="inline-flex min-h-11 items-center justify-center gap-3 rounded border border-[#dedbd2] bg-[#faf9f5] px-4 py-2.5 text-sm font-medium text-[#26352a] shadow-sm transition hover:bg-[#f0eee5] disabled:cursor-not-allowed disabled:opacity-60">
                   {isExporting ? (
                     <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#d5ddcf] border-t-[#385b43]" />
                   ) : (
@@ -445,8 +435,7 @@ export default function Reports() {
             {exportMessage ? (
               <p
                 role="status"
-                className="mb-2 text-sm text-[#385b43]"
-              >
+                className="mb-2 text-sm text-[#385b43]">
                 {exportMessage}
               </p>
             ) : null}
