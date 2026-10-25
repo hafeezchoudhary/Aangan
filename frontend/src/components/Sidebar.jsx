@@ -60,12 +60,11 @@ export default function Sidebar() {
     return (
         <>
             {/* Mobile header: hidden on desktop */}
-            <header className="fixed inset-x-0 top-0 z-30 flex h-[68px] items-center justify-between border-b border-[#2c3b30] bg-[#19271d] px-5 text-[#f3f1e8] md:hidden">
+            <header className="fixed inset-x-0 top-0 z-30 flex h-17 items-center justify-between border-b border-[#2c3b30] bg-[#19271d] px-5 text-[#f3f1e8] md:hidden">
                 <NavLink
                     to="/dashboard"
                     onClick={closeMenu}
-                    className="flex items-center gap-3"
-                >
+                    className="flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#203126] text-[#b7c28d]">
                         <LuSprout size={25} />
                     </span>
@@ -80,8 +79,7 @@ export default function Sidebar() {
                     onClick={() => setMenuOpen((open) => !open)}
                     aria-label={menuOpen ? "Close navigation" : "Open navigation"}
                     aria-expanded={menuOpen}
-                    className="flex h-10 w-10 items-center justify-center rounded-lg text-[#f3f1e8] transition hover:bg-white/10"
-                >
+                    className="flex h-10 w-10 items-center justify-center rounded-lg text-[#f3f1e8] transition hover:bg-white/10">
                     {menuOpen ? <FiX size={23} /> : <FiMenu size={23} />}
                 </button>
             </header>
@@ -92,21 +90,18 @@ export default function Sidebar() {
                     type="button"
                     aria-label="Close navigation menu"
                     onClick={closeMenu}
-                    className="fixed inset-0 z-40 bg-black/50 md:hidden"
-                />
+                    className="fixed inset-0 z-40 bg-black/50 md:hidden"/>
             )}
 
             {/* Sidebar */}
             <aside
-                className={`fixed inset-y-0 left-0 z-50 flex w-[285px] max-w-[85vw] flex-col bg-[#19271d] px-[25px] py-6 text-[#c1c7bd] transition-transform duration-300 ease-in-out md:sticky md:top-0 md:z-20 md:h-screen md:w-[285px] md:max-w-none md:translate-x-0 md:shrink-0 md:transition-none ${menuOpen ? "translate-x-0" : "-translate-x-full"
-                    }`}
-            >
+                className={`fixed inset-y-0 left-0 z-50 flex w-71.25 max-w-[85vw] flex-col bg-[#19271d] px-6.25 py-6 text-[#c1c7bd] transition-transform duration-300 ease-in-out md:sticky md:top-0 md:z-20 md:h-screen md:w-71.25 md:max-w-none md:translate-x-0 md:shrink-0 md:transition-none ${menuOpen ? "translate-x-0" : "-translate-x-full"
+                    }`}>
                 {/* Brand: visible in sidebar on desktop */}
                 <NavLink
                     to="/dashboard"
                     onClick={closeMenu}
-                    className="mb-8 hidden h-13 items-center gap-4 md:flex"
-                >
+                    className="mb-8 hidden h-13 items-center gap-4 md:flex">
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#203126] text-[#b7c28d]">
                         <LuSprout size={27} />
                     </span>
@@ -127,12 +122,11 @@ export default function Sidebar() {
                             end={path === "/dashboard"}
                             onClick={closeMenu}
                             className={({ isActive }) =>
-                                `flex min-h-[50px] items-center gap-4 rounded-md px-4 text-[16px] transition-colors ${isActive
+                                `flex min-h-12.5 items-center gap-4 rounded-md px-4 text-[16px] transition-colors ${isActive
                                     ? "bg-[#29372c] text-[#f5f3eb]"
                                     : "text-[#b9c0b7] hover:bg-[#223026] hover:text-[#f5f3eb]"
                                 }`
-                            }
-                        >
+                            }>
                             <Icon size={20} strokeWidth={1.8} />
                             <span>{label}</span>
                         </NavLink>
@@ -161,8 +155,7 @@ export default function Sidebar() {
                         type="button"
                         onClick={handleLogout}
                         disabled={loggingOut}
-                        className="mt-5 flex min-h-11 w-full items-center gap-3 rounded-md border border-[#344136] px-4 text-sm text-[#f3f1e8] transition hover:bg-[#26352a] disabled:cursor-not-allowed disabled:opacity-60"
-                    >
+                        className="mt-5 flex min-h-11 w-full items-center gap-3 rounded-md border border-[#344136] px-4 text-sm text-[#f3f1e8] transition hover:bg-[#26352a] disabled:cursor-not-allowed disabled:opacity-60">
                         <FiLogOut size={19} />
                         {loggingOut ? "Signing out..." : "Sign out"}
                     </button>

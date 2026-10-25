@@ -84,14 +84,12 @@ function Notice({ message, type = "success", onClose }) {
       className={`mt-5 flex items-start justify-between gap-3 rounded-md border px-4 py-3 text-sm ${type === "error"
           ? "border-red-200 bg-red-50 text-red-800"
           : "border-[#c9dcc4] bg-[#edf4e9] text-[#294c32]"
-        }`}
-    >
+        }`}>
       <span>{message}</span>
       <button
         type="button"
         onClick={onClose}
-        aria-label="Dismiss notification"
-      >
+        aria-label="Dismiss notification">
         <FiX size={18} />
       </button>
     </div>
@@ -270,7 +268,7 @@ export default function Donation() {
 
   return (
     <main className="min-w-0 px-4 pb-10 pt-24 sm:px-6 md:px-8 md:pt-10 lg:px-10 xl:px-12">
-      <div className="mx-auto max-w-[1440px]">
+      <div className="mx-auto max-w-360">
         <header className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-[#39553c]">
@@ -290,8 +288,7 @@ export default function Donation() {
           <button
             type="button"
             onClick={openAddModal}
-            className="inline-flex min-h-11 items-center justify-center gap-2 self-start rounded-md bg-[#315337] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#253f2b] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#456748] focus-visible:ring-offset-2 sm:self-auto"
-          >
+            className="inline-flex min-h-11 items-center justify-center gap-2 self-start rounded-md bg-[#315337] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#253f2b] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#456748] focus-visible:ring-offset-2 sm:self-auto">
             <FiPlus size={18} />
             Add donation
           </button>
@@ -310,8 +307,7 @@ export default function Donation() {
 
         <section
           aria-label="Donation summary"
-          className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2"
-        >
+          className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="rounded-md border border-[#dfddd3] bg-[#fffefd] p-5 sm:p-6">
             <div className="flex items-center justify-between gap-3">
               <p className="text-sm text-[#596257]">Total donations received</p>
@@ -320,7 +316,7 @@ export default function Donation() {
               </span>
             </div>
 
-            <p className="mt-4 break-words font-serif text-3xl font-medium text-[#19251c] sm:text-4xl">
+            <p className="mt-4 wrap-break-word font-serif text-3xl font-medium text-[#19251c] sm:text-4xl">
               {loading ? "Loading..." : formatCurrency(totalAmount)}
             </p>
 
@@ -363,13 +359,12 @@ export default function Donation() {
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder="Search donor, ID or method..."
-                className="min-w-0 flex-1 bg-transparent text-sm text-[#19251c] outline-none placeholder:text-[#7a8177]"
-              />
+                className="min-w-0 flex-1 bg-transparent text-sm text-[#19251c] outline-none placeholder:text-[#7a8177]"/>
             </label>
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[850px] border-collapse text-left">
+            <table className="w-full min-w-202.5 border-collapse text-left">
               <thead>
                 <tr className="border-b border-[#dfddd3] text-xs font-semibold text-[#596257]">
                   <th className="px-5 py-4">Donation ID</th>
@@ -412,8 +407,7 @@ export default function Donation() {
                         <button
                           type="button"
                           onClick={openAddModal}
-                          className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#315337] hover:underline"
-                        >
+                          className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#315337] hover:underline">
                           <FiPlus size={16} />
                           Add the first donation
                         </button>
@@ -424,18 +418,17 @@ export default function Donation() {
                   donations.map((donation) => (
                     <tr
                       key={donation._id}
-                      className="border-b border-[#e5e1d8] last:border-b-0 hover:bg-[#faf9f4]"
-                    >
+                      className="border-b border-[#e5e1d8] last:border-b-0 hover:bg-[#faf9f4]">
                       <td className="whitespace-nowrap px-5 py-4 text-sm font-medium text-[#315337]">
                         {donation.donationId || "—"}
                       </td>
 
-                      <td className="max-w-[240px] px-4 py-4">
-                        <p className="break-words text-sm font-medium text-[#19251c]">
+                      <td className="max-w-60 px-4 py-4">
+                        <p className="wrap-break-word text-sm font-medium text-[#19251c]">
                           {donation.donorName}
                         </p>
                         {donation.note && (
-                          <p className="mt-1 max-w-[220px] break-words text-xs text-[#777c71]">
+                          <p className="mt-1 max-w-55 wrap-break-word text-xs text-[#777c71]">
                             {donation.note}
                           </p>
                         )}
@@ -459,8 +452,7 @@ export default function Donation() {
                             type="button"
                             onClick={() => openEditModal(donation)}
                             aria-label={`Edit donation ${donation.donationId || ""}`}
-                            className="rounded p-2 text-[#315337] transition hover:bg-[#e0eadb] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#456748]"
-                          >
+                            className="rounded p-2 text-[#315337] transition hover:bg-[#e0eadb] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#456748]">
                             <FiEdit2 size={17} />
                           </button>
 
@@ -468,8 +460,7 @@ export default function Donation() {
                             type="button"
                             onClick={() => setDeleteTarget(donation)}
                             aria-label={`Delete donation ${donation.donationId || ""}`}
-                            className="rounded p-2 text-[#9b4036] transition hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
-                          >
+                            className="rounded p-2 text-[#9b4036] transition hover:bg-red-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400">
                             <FiTrash2 size={17} />
                           </button>
                         </div>
@@ -493,8 +484,7 @@ export default function Donation() {
               type="button"
               onClick={loadDonations}
               disabled={loading}
-              className="self-start font-medium text-[#315337] hover:underline disabled:opacity-50 sm:self-auto"
-            >
+              className="self-start font-medium text-[#315337] hover:underline disabled:opacity-50 sm:self-auto">
               Refresh records
             </button>
           </div>
@@ -507,20 +497,17 @@ export default function Donation() {
             if (event.target === event.currentTarget && !saving) {
               closeModal();
             }
-          }}
-        >
+          }}>
           <section
             role="dialog"
             aria-modal="true"
             aria-labelledby="donation-modal-title"
-            className="my-auto w-full max-w-xl rounded-lg border border-[#dfddd3] bg-[#f8f6f0] p-5 shadow-2xl sm:p-8"
-          >
+            className="my-auto w-full max-w-xl rounded-lg border border-[#dfddd3] bg-[#f8f6f0] p-5 shadow-2xl sm:p-8">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h2
                   id="donation-modal-title"
-                  className="text-xl font-semibold text-[#19251c] sm:text-2xl"
-                >
+                  className="text-xl font-semibold text-[#19251c] sm:text-2xl">
                   {editingDonation ? "Edit donation" : "Record a donation"}
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-[#687367]">
@@ -535,8 +522,7 @@ export default function Donation() {
                 onClick={closeModal}
                 disabled={saving}
                 aria-label="Close form"
-                className="rounded p-1 text-[#687367] hover:bg-[#eae7dd] disabled:opacity-50"
-              >
+                className="rounded p-1 text-[#687367] hover:bg-[#eae7dd] disabled:opacity-50">
                 <FiX size={22} />
               </button>
             </div>
@@ -545,8 +531,7 @@ export default function Donation() {
               <div>
                 <label
                   htmlFor="donorName"
-                  className="mb-1.5 block text-sm font-medium text-[#19251c]"
-                >
+                  className="mb-1.5 block text-sm font-medium text-[#19251c]">
                   Donor name <span className="text-red-700">*</span>
                 </label>
                 <input
@@ -558,16 +543,14 @@ export default function Donation() {
                   maxLength={150}
                   autoFocus
                   placeholder="Enter donor name"
-                  className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-4 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
-                />
+                  className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-4 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"/>
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label
                     htmlFor="date"
-                    className="mb-1.5 block text-sm font-medium text-[#19251c]"
-                  >
+                    className="mb-1.5 block text-sm font-medium text-[#19251c]">
                     Donation date <span className="text-red-700">*</span>
                   </label>
                   <input
@@ -578,15 +561,13 @@ export default function Donation() {
                     onChange={handleChange}
                     required
                     max={new Date().toLocaleDateString("en-CA")}
-                    className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
-                  />
+                    className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"/>
                 </div>
 
                 <div>
                   <label
                     htmlFor="method"
-                    className="mb-1.5 block text-sm font-medium text-[#19251c]"
-                  >
+                    className="mb-1.5 block text-sm font-medium text-[#19251c]">
                     Payment method <span className="text-red-700">*</span>
                   </label>
                   <select
@@ -595,8 +576,8 @@ export default function Donation() {
                     value={form.method}
                     onChange={handleChange}
                     required
-                    className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
-                  >
+                    className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]">
+                    
                     {PAYMENT_METHODS.map((method) => (
                       <option key={method} value={method}>
                         {method}
@@ -609,8 +590,7 @@ export default function Donation() {
               <div>
                 <label
                   htmlFor="amount"
-                  className="mb-1.5 block text-sm font-medium text-[#19251c]"
-                >
+                  className="mb-1.5 block text-sm font-medium text-[#19251c]">
                   Amount (₹) <span className="text-red-700">*</span>
                 </label>
                 <input
@@ -624,15 +604,13 @@ export default function Donation() {
                   max="1000000000"
                   step="0.01"
                   placeholder="Enter amount"
-                  className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-4 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
-                />
+                  className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-4 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"/>
               </div>
 
               <div>
                 <label
                   htmlFor="note"
-                  className="mb-1.5 block text-sm font-medium text-[#19251c]"
-                >
+                  className="mb-1.5 block text-sm font-medium text-[#19251c]">
                   Note <span className="text-[#777c71]">(optional)</span>
                 </label>
                 <textarea
@@ -643,15 +621,11 @@ export default function Donation() {
                   maxLength={1000}
                   rows={3}
                   placeholder="Add a short note about this donation"
-                  className="w-full resize-y rounded-md border border-[#d9d6cb] bg-[#fffefd] px-4 py-3 text-sm outline-none placeholder:text-[#7a8177] focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
-                />
+                  className="w-full resize-y rounded-md border border-[#d9d6cb] bg-[#fffefd] px-4 py-3 text-sm outline-none placeholder:text-[#7a8177] focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"/>
               </div>
 
               {error && (
-                <div
-                  role="alert"
-                  className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
-                >
+                <div role="alert" className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
                   {error}
                 </div>
               )}
@@ -661,15 +635,13 @@ export default function Donation() {
                   type="button"
                   onClick={closeModal}
                   disabled={saving}
-                  className="min-h-11 rounded-md border border-[#d9d6cb] bg-[#fffefd] px-5 text-sm font-medium text-[#19251c] hover:bg-[#efede5] disabled:opacity-50"
-                >
+                  className="min-h-11 rounded-md border border-[#d9d6cb] bg-[#fffefd] px-5 text-sm font-medium text-[#19251c] hover:bg-[#efede5] disabled:opacity-50">
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[#315337] px-5 text-sm font-medium text-white hover:bg-[#253f2b] disabled:cursor-not-allowed disabled:opacity-60"
-                >
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[#315337] px-5 text-sm font-medium text-white hover:bg-[#253f2b] disabled:cursor-not-allowed disabled:opacity-60">
                   {saving
                     ? "Saving..."
                     : editingDonation
@@ -684,19 +656,17 @@ export default function Donation() {
 
       {deleteTarget && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4"
+          className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 p-4"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget && !deleting) {
               setDeleteTarget(null);
             }
-          }}
-        >
+          }}>
           <section
             role="dialog"
             aria-modal="true"
             aria-labelledby="delete-donation-title"
-            className="w-full max-w-md rounded-xl border border-[#dfddd3] bg-[#fffefd] p-5 shadow-2xl sm:p-6"
-          >
+            className="w-full max-w-md rounded-xl border border-[#dfddd3] bg-[#fffefd] p-5 shadow-2xl sm:p-6">
             <div className="flex items-start gap-3">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-red-50 text-[#9b4036]">
                 <FiTrash2 size={20} />
@@ -705,8 +675,7 @@ export default function Donation() {
               <div className="min-w-0 flex-1">
                 <h2
                   id="delete-donation-title"
-                  className="text-lg font-semibold text-[#19251c]"
-                >
+                  className="text-lg font-semibold text-[#19251c]">
                   Delete donation?
                 </h2>
                 <p className="mt-2 text-sm leading-6 text-[#596257]">
@@ -727,8 +696,7 @@ export default function Donation() {
                 onClick={() => setDeleteTarget(null)}
                 disabled={deleting}
                 aria-label="Close confirmation"
-                className="rounded p-1 text-[#687367] hover:bg-[#efede5] disabled:opacity-50"
-              >
+                className="rounded p-1 text-[#687367] hover:bg-[#efede5] disabled:opacity-50">
                 <FiX size={20} />
               </button>
             </div>
@@ -738,16 +706,14 @@ export default function Donation() {
                 type="button"
                 onClick={() => setDeleteTarget(null)}
                 disabled={deleting}
-                className="min-h-10 rounded-md border border-[#d9d6cb] px-4 text-sm font-medium text-[#19251c] hover:bg-[#f3f1e9] disabled:opacity-50"
-              >
+                className="min-h-10 rounded-md border border-[#d9d6cb] px-4 text-sm font-medium text-[#19251c] hover:bg-[#f3f1e9] disabled:opacity-50">
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={confirmDelete}
                 disabled={deleting}
-                className="min-h-10 rounded-md bg-[#9b4036] px-4 text-sm font-medium text-white hover:bg-[#80332b] disabled:cursor-not-allowed disabled:opacity-60"
-              >
+                className="min-h-10 rounded-md bg-[#9b4036] px-4 text-sm font-medium text-white hover:bg-[#80332b] disabled:cursor-not-allowed disabled:opacity-60">
                 {deleting ? "Deleting..." : "Delete donation"}
               </button>
             </div>

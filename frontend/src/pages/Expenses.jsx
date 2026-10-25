@@ -318,8 +318,7 @@ export default function Expenses() {
           <button
             type="button"
             onClick={openAddModal}
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#385b43] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#294733] focus:outline-none focus:ring-2 focus:ring-[#385b43] focus:ring-offset-2"
-          >
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#385b43] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#294733] focus:outline-none focus:ring-2 focus:ring-[#385b43] focus:ring-offset-2">
             <FiPlus size={18} />
             Add Expense
           </button>
@@ -329,14 +328,12 @@ export default function Expenses() {
         {notice && (
           <div
             role="status"
-            className="mb-5 flex items-center justify-between gap-3 rounded-xl border border-[#d7e6d7] bg-[#edf5eb] px-4 py-3 text-sm font-medium text-[#385b43]"
-          >
+            className="mb-5 flex items-center justify-between gap-3 rounded-xl border border-[#d7e6d7] bg-[#edf5eb] px-4 py-3 text-sm font-medium text-[#385b43]">
             <span>{notice}</span>
             <button
               type="button"
               onClick={() => setNotice("")}
-              aria-label="Dismiss notification"
-            >
+              aria-label="Dismiss notification">
               <FiX size={18} />
             </button>
           </div>
@@ -345,8 +342,7 @@ export default function Expenses() {
         {error && (
           <div
             role="alert"
-            className="mb-5 flex flex-col gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800 sm:flex-row sm:items-center sm:justify-between"
-          >
+            className="mb-5 flex flex-col gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-2">
               <FiAlertCircle className="mt-0.5 shrink-0" size={18} />
               <span>{error}</span>
@@ -355,8 +351,7 @@ export default function Expenses() {
             <button
               type="button"
               onClick={fetchExpenses}
-              className="inline-flex items-center gap-2 self-start font-semibold underline sm:self-center"
-            >
+              className="inline-flex items-center gap-2 self-start font-semibold underline sm:self-center">
               <FiRefreshCw size={14} />
               Retry
             </button>
@@ -366,8 +361,7 @@ export default function Expenses() {
         {/* Summary cards */}
         <section
           aria-label="Expense summary"
-          className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"
-        >
+          className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           <div className="rounded-2xl border border-[#e9e5da] bg-white p-5 shadow-sm sm:p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -375,7 +369,7 @@ export default function Expenses() {
                   Total Expenditure
                 </p>
 
-                <p className="mt-3 break-words text-2xl font-bold tracking-tight text-[#26372d] sm:text-3xl">
+                <p className="mt-3 wrap-break-word text-2xl font-bold tracking-tight text-[#26372d] sm:text-3xl">
                   {formatCurrency(totalAmount)}
                 </p>
 
@@ -453,10 +447,7 @@ export default function Expenses() {
             </div>
 
             <div className="relative w-full lg:max-w-sm">
-              <FiSearch
-                size={18}
-                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#929a8f]"
-              />
+              <FiSearch size={18} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[#929a8f]"/>
 
               <input
                 type="search"
@@ -464,8 +455,7 @@ export default function Expenses() {
                 onChange={(event) => setSearch(event.target.value)}
                 placeholder="Search expenses..."
                 aria-label="Search expenses"
-                className="min-h-11 w-full rounded-xl border border-[#e5e3da] bg-[#fdfcf9] py-2.5 pl-10 pr-4 text-sm outline-none transition placeholder:text-[#a0a69c] focus:border-[#789477] focus:ring-2 focus:ring-[#789477]/20"
-              />
+                className="min-h-11 w-full rounded-xl border border-[#e5e3da] bg-[#fdfcf9] py-2.5 pl-10 pr-4 text-sm outline-none transition placeholder:text-[#a0a69c] focus:border-[#789477] focus:ring-2 focus:ring-[#789477]/20"/>
             </div>
           </div>
 
@@ -499,19 +489,11 @@ export default function Expenses() {
               </p>
 
               {search.trim() ? (
-                <button
-                  type="button"
-                  onClick={() => setSearch("")}
-                  className="mt-5 rounded-lg px-4 py-2 text-sm font-semibold text-[#385b43] hover:bg-[#f1f3ed]"
-                >
+                <button type="button" onClick={() => setSearch("")} className="mt-5 rounded-lg px-4 py-2 text-sm font-semibold text-[#385b43] hover:bg-[#f1f3ed]">
                   Clear search
                 </button>
               ) : (
-                <button
-                  type="button"
-                  onClick={openAddModal}
-                  className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#385b43] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#294733]"
-                >
+                <button type="button" onClick={openAddModal} className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#385b43] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#294733]">
                   <FiPlus size={16} />
                   Add your first expense
                 </button>
@@ -525,7 +507,7 @@ export default function Expenses() {
                   <article key={expense._id} className="space-y-4 p-5">
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
-                        <h3 className="break-words font-semibold text-[#2e4033]">
+                        <h3 className="wrap-break-word font-semibold text-[#2e4033]">
                           {expense.title}
                         </h3>
 
@@ -550,7 +532,7 @@ export default function Expenses() {
                     </div>
 
                     {expense.note && (
-                      <p className="break-words text-sm leading-5 text-[#858d81]">
+                      <p className="wrap-break-word text-sm leading-5 text-[#858d81]">
                         {expense.note}
                       </p>
                     )}
@@ -560,8 +542,7 @@ export default function Expenses() {
                         type="button"
                         onClick={() => openEditModal(expense)}
                         aria-label={`Edit ${expense.title}`}
-                        className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-[#e4e7dc] px-3 text-sm font-medium text-[#526b4d] hover:bg-[#f3f5ee]"
-                      >
+                        className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-[#e4e7dc] px-3 text-sm font-medium text-[#526b4d] hover:bg-[#f3f5ee]">
                         <FiEdit2 size={15} />
                         Edit
                       </button>
@@ -570,8 +551,7 @@ export default function Expenses() {
                         type="button"
                         onClick={() => setDeleteTarget(expense)}
                         aria-label={`Delete ${expense.title}`}
-                        className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-red-100 px-3 text-sm font-medium text-red-600 hover:bg-red-50"
-                      >
+                        className="inline-flex min-h-10 items-center gap-2 rounded-lg border border-red-100 px-3 text-sm font-medium text-red-600 hover:bg-red-50">
                         <FiTrash2 size={15} />
                         Delete
                       </button>
@@ -582,7 +562,7 @@ export default function Expenses() {
 
               {/* Desktop table */}
               <div className="hidden overflow-x-auto md:block">
-                <table className="w-full min-w-[900px] text-left">
+                <table className="w-full min-w-225 text-left">
                   <thead className="bg-[#faf9f5]">
                     <tr className="border-b border-[#eeeae1]">
                       <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-[#7c8579]">
@@ -610,10 +590,9 @@ export default function Expenses() {
                     {expenses.map((expense) => (
                       <tr
                         key={expense._id}
-                        className="transition hover:bg-[#fdfcf9]"
-                      >
+                        className="transition hover:bg-[#fdfcf9]">
                         <td className="max-w-xs px-6 py-4">
-                          <p className="break-words font-semibold text-[#344638]">
+                          <p className="wrap-break-word font-semibold text-[#344638]">
                             {expense.title}
                           </p>
 
@@ -653,8 +632,7 @@ export default function Expenses() {
                               onClick={() => openEditModal(expense)}
                               aria-label={`Edit ${expense.title}`}
                               title="Edit expense"
-                              className="rounded-lg border border-[#e5e8df] p-2.5 text-[#587451] transition hover:bg-[#f0f3e8]"
-                            >
+                              className="rounded-lg border border-[#e5e8df] p-2.5 text-[#587451] transition hover:bg-[#f0f3e8]">
                               <FiEdit2 size={16} />
                             </button>
 
@@ -663,8 +641,7 @@ export default function Expenses() {
                               onClick={() => setDeleteTarget(expense)}
                               aria-label={`Delete ${expense.title}`}
                               title="Delete expense"
-                              className="rounded-lg border border-red-100 p-2.5 text-red-500 transition hover:bg-red-50"
-                            >
+                              className="rounded-lg border border-red-100 p-2.5 text-red-500 transition hover:bg-red-50">
                               <FiTrash2 size={16} />
                             </button>
                           </div>
@@ -691,20 +668,17 @@ export default function Expenses() {
           className="fixed inset-0 z-50 flex items-end justify-center bg-[#17251b]/50 p-0 backdrop-blur-[2px] sm:items-center sm:p-4"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) closeModal();
-          }}
-        >
+          }}>
           <section
             role="dialog"
             aria-modal="true"
             aria-labelledby="expense-modal-title"
-            className="max-h-[94dvh] w-full max-w-xl overflow-y-auto rounded-t-2xl bg-white shadow-2xl sm:rounded-2xl"
-          >
+            className="max-h-[94dvh] w-full max-w-xl overflow-y-auto rounded-t-2xl bg-white shadow-2xl sm:rounded-2xl">
             <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-[#eeeae1] bg-white px-5 py-5 sm:px-7">
               <div>
                 <h2
                   id="expense-modal-title"
-                  className="text-xl font-bold text-[#2d4032]"
-                >
+                  className="text-xl font-bold text-[#2d4032]">
                   {editingExpense ? "Edit Expense" : "Add New Expense"}
                 </h2>
 
@@ -720,8 +694,7 @@ export default function Expenses() {
                 onClick={closeModal}
                 disabled={saving}
                 aria-label="Close modal"
-                className="rounded-lg p-2 text-[#7d887b] transition hover:bg-[#f3f3ed] disabled:opacity-50"
-              >
+                className="rounded-lg p-2 text-[#7d887b] transition hover:bg-[#f3f3ed] disabled:opacity-50">
                 <FiX size={20} />
               </button>
             </div>
@@ -730,8 +703,7 @@ export default function Expenses() {
               {formError && (
                 <div
                   role="alert"
-                  className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
-                >
+                  className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                   {formError}
                 </div>
               )}
@@ -739,8 +711,7 @@ export default function Expenses() {
               <div>
                 <label
                   htmlFor="expense-title"
-                  className="mb-2 block text-sm font-semibold text-[#425244]"
-                >
+                  className="mb-2 block text-sm font-semibold text-[#425244]">
                   Expense title <span className="text-red-500">*</span>
                 </label>
 
@@ -753,16 +724,12 @@ export default function Expenses() {
                   maxLength={150}
                   required
                   placeholder="e.g. Monthly groceries"
-                  className="min-h-11 w-full rounded-xl border border-[#e2e4da] px-4 py-3 text-sm outline-none transition focus:border-[#789477] focus:ring-2 focus:ring-[#789477]/20"
-                />
+                  className="min-h-11 w-full rounded-xl border border-[#e2e4da] px-4 py-3 text-sm outline-none transition focus:border-[#789477] focus:ring-2 focus:ring-[#789477]/20"/>
               </div>
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
-                  <label
-                    htmlFor="expense-category"
-                    className="mb-2 block text-sm font-semibold text-[#425244]"
-                  >
+                  <label htmlFor="expense-category" className="mb-2 block text-sm font-semibold text-[#425244]">
                     Category <span className="text-red-500">*</span>
                   </label>
 
@@ -772,8 +739,7 @@ export default function Expenses() {
                     value={form.category}
                     onChange={handleFormChange}
                     required
-                    className="min-h-11 w-full rounded-xl border border-[#e2e4da] bg-white px-3 py-3 text-sm outline-none focus:border-[#789477] focus:ring-2 focus:ring-[#789477]/20"
-                  >
+                    className="min-h-11 w-full rounded-xl border border-[#e2e4da] bg-white px-3 py-3 text-sm outline-none focus:border-[#789477] focus:ring-2 focus:ring-[#789477]/20">
                     {CATEGORIES.map((category) => (
                       <option key={category} value={category}>
                         {category}
@@ -783,10 +749,7 @@ export default function Expenses() {
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="expense-date"
-                    className="mb-2 block text-sm font-semibold text-[#425244]"
-                  >
+                  <label htmlFor="expense-date" className="mb-2 block text-sm font-semibold text-[#425244]">
                     Expense date <span className="text-red-500">*</span>
                   </label>
 
@@ -797,17 +760,13 @@ export default function Expenses() {
                     value={form.date}
                     onChange={handleFormChange}
                     required
-                    className="min-h-11 w-full rounded-xl border border-[#e2e4da] bg-white px-3 py-3 text-sm outline-none focus:border-[#789477] focus:ring-2 focus:ring-[#789477]/20"
-                  />
+                    className="min-h-11 w-full rounded-xl border border-[#e2e4da] bg-white px-3 py-3 text-sm outline-none focus:border-[#789477] focus:ring-2 focus:ring-[#789477]/20"/>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
-                  <label
-                    htmlFor="expense-amount"
-                    className="mb-2 block text-sm font-semibold text-[#425244]"
-                  >
+                  <label htmlFor="expense-amount" className="mb-2 block text-sm font-semibold text-[#425244]">
                     Amount (₹) <span className="text-red-500">*</span>
                   </label>
 
@@ -821,15 +780,11 @@ export default function Expenses() {
                     onChange={handleFormChange}
                     required
                     placeholder="0.00"
-                    className="min-h-11 w-full rounded-xl border border-[#e2e4da] px-4 py-3 text-sm outline-none focus:border-[#789477] focus:ring-2 focus:ring-[#789477]/20"
-                  />
+                    className="min-h-11 w-full rounded-xl border border-[#e2e4da] px-4 py-3 text-sm outline-none focus:border-[#789477] focus:ring-2 focus:ring-[#789477]/20"/>
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="expense-payment"
-                    className="mb-2 block text-sm font-semibold text-[#425244]"
-                  >
+                  <label htmlFor="expense-payment" className="mb-2 block text-sm font-semibold text-[#425244]">
                     Payment method
                   </label>
 
@@ -838,8 +793,7 @@ export default function Expenses() {
                     name="paymentMethod"
                     value={form.paymentMethod}
                     onChange={handleFormChange}
-                    className="min-h-11 w-full rounded-xl border border-[#e2e4da] bg-white px-3 py-3 text-sm outline-none focus:border-[#789477] focus:ring-2 focus:ring-[#789477]/20"
-                  >
+                    className="min-h-11 w-full rounded-xl border border-[#e2e4da] bg-white px-3 py-3 text-sm outline-none focus:border-[#789477] focus:ring-2 focus:ring-[#789477]/20">
                     {PAYMENT_METHODS.map((method) => (
                       <option key={method} value={method}>
                         {method}
@@ -852,8 +806,7 @@ export default function Expenses() {
               <div>
                 <label
                   htmlFor="expense-note"
-                  className="mb-2 block text-sm font-semibold text-[#425244]"
-                >
+                  className="mb-2 block text-sm font-semibold text-[#425244]">
                   Notes <span className="font-normal text-[#969d92]">(optional)</span>
                 </label>
 
@@ -874,16 +827,14 @@ export default function Expenses() {
                   type="button"
                   onClick={closeModal}
                   disabled={saving}
-                  className="min-h-11 rounded-xl border border-[#e2e4da] px-5 py-3 text-sm font-semibold text-[#637062] transition hover:bg-[#f8f7f2] disabled:opacity-50"
-                >
+                  className="min-h-11 rounded-xl border border-[#e2e4da] px-5 py-3 text-sm font-semibold text-[#637062] transition hover:bg-[#f8f7f2] disabled:opacity-50">
                   Cancel
                 </button>
 
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#385b43] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#294733] disabled:cursor-not-allowed disabled:opacity-60"
-                >
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#385b43] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#294733] disabled:cursor-not-allowed disabled:opacity-60">
                   {saving && (
                     <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
                   )}
@@ -901,25 +852,21 @@ export default function Expenses() {
 
       {/* Delete confirmation modal */}
       {deleteTarget && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-[#17251b]/50 p-4 backdrop-blur-[2px]">
+        <div className="fixed inset-0 z-60 flex items-center justify-center bg-[#17251b]/50 p-4 backdrop-blur-[2px]">
           <section
             role="dialog"
             aria-modal="true"
             aria-labelledby="delete-expense-title"
-            className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-7"
-          >
+            className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-7">
             <div className="mb-4 inline-flex rounded-xl bg-red-50 p-3 text-red-600">
               <FiTrash2 size={23} />
             </div>
 
-            <h2
-              id="delete-expense-title"
-              className="text-xl font-bold text-[#2d4032]"
-            >
+            <h2 id="delete-expense-title" className="text-xl font-bold text-[#2d4032]">
               Delete expense?
             </h2>
 
-            <p className="mt-3 break-words text-sm leading-6 text-[#788176]">
+            <p className="mt-3 wrap-break-word text-sm leading-6 text-[#788176]">
               Are you sure you want to delete{" "}
               <span className="font-semibold text-[#344638]">
                 {deleteTarget.title}
@@ -932,8 +879,7 @@ export default function Expenses() {
                 type="button"
                 onClick={() => setDeleteTarget(null)}
                 disabled={deleting}
-                className="min-h-11 rounded-xl border border-[#e2e4da] px-5 py-3 text-sm font-semibold text-[#637062] hover:bg-[#f8f7f2] disabled:opacity-50"
-              >
+                className="min-h-11 rounded-xl border border-[#e2e4da] px-5 py-3 text-sm font-semibold text-[#637062] hover:bg-[#f8f7f2] disabled:opacity-50">
                 Cancel
               </button>
 
@@ -941,8 +887,7 @@ export default function Expenses() {
                 type="button"
                 onClick={handleDelete}
                 disabled={deleting}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
-              >
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60">
                 {deleting ? "Deleting..." : "Delete Expense"}
               </button>
             </div>

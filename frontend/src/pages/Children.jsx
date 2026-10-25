@@ -267,8 +267,7 @@ export default function Children() {
                     <button
                         type="button"
                         onClick={openAddModal}
-                        className="inline-flex min-h-11 items-center justify-center gap-2 self-start rounded-md bg-[#315337] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#253f2b] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#456748] focus-visible:ring-offset-2 sm:self-auto"
-                    >
+                        className="inline-flex min-h-11 items-center justify-center gap-2 self-start rounded-md bg-[#315337] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#253f2b] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#456748] focus-visible:ring-offset-2 sm:self-auto">
                         <FiPlus size={18} />
                         Add record
                     </button>
@@ -277,14 +276,12 @@ export default function Children() {
                 {error && !modalOpen && (
                     <div
                         role="alert"
-                        className="mt-5 flex items-start justify-between gap-3 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
-                    >
+                        className="mt-5 flex items-start justify-between gap-3 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
                         <span>{error}</span>
                         <button
                             type="button"
                             onClick={() => setError("")}
-                            aria-label="Dismiss error"
-                        >
+                            aria-label="Dismiss error">
                             <FiX size={18} />
                         </button>
                     </div>
@@ -293,8 +290,7 @@ export default function Children() {
                 {notice && (
                     <div
                         role="status"
-                        className="mt-5 flex items-start justify-between gap-3 rounded-md border border-[#c9dcc4] bg-[#edf4e9] px-4 py-3 text-sm text-[#294c32]"
-                    >
+                        className="mt-5 flex items-start justify-between gap-3 rounded-md border border-[#c9dcc4] bg-[#edf4e9] px-4 py-3 text-sm text-[#294c32]">
                         <span className="flex items-center gap-2">
                             <FiCheck size={17} />
                             {notice}
@@ -302,8 +298,7 @@ export default function Children() {
                         <button
                             type="button"
                             onClick={() => setNotice("")}
-                            aria-label="Dismiss notification"
-                        >
+                            aria-label="Dismiss notification">
                             <FiX size={18} />
                         </button>
                     </div>
@@ -318,8 +313,7 @@ export default function Children() {
                             value={search}
                             onChange={(event) => setSearch(event.target.value)}
                             placeholder="Search by name, ID or contact..."
-                            className="min-w-0 flex-1 bg-transparent text-sm text-[#19251c] outline-none placeholder:text-[#7a8177]"
-                        />
+                            className="min-w-0 flex-1 bg-transparent text-sm text-[#19251c] outline-none placeholder:text-[#7a8177]"/>
                     </label>
 
                     <label className="relative flex min-h-11 min-w-42.5 items-center rounded-md border border-[#dfddd3] bg-[#fffefd] shadow-sm">
@@ -327,16 +321,14 @@ export default function Children() {
                         <select
                             value={status}
                             onChange={(event) => setStatus(event.target.value)}
-                            className="h-full w-full appearance-none bg-transparent px-4 pr-10 text-sm text-[#19251c] outline-none"
-                        >
+                            className="h-full w-full appearance-none bg-transparent px-4 pr-10 text-sm text-[#19251c] outline-none">
                             <option value="all">All statuses</option>
                             <option value="Active">Active</option>
                             <option value="Archived">Archived</option>
                         </select>
                         <FiChevronDown
                             className="pointer-events-none absolute right-3 text-[#7a8177]"
-                            size={17}
-                        />
+                            size={17}/>
                     </label>
                 </section>
                 <section className="mt-5 overflow-hidden rounded-md border border-[#dfddd3] bg-[#fffefd]">
@@ -376,8 +368,7 @@ export default function Children() {
                                                 <button
                                                     type="button"
                                                     onClick={openAddModal}
-                                                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#315337] hover:underline"
-                                                >
+                                                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#315337] hover:underline">
                                                     <FiPlus size={16} />
                                                     Add the first record
                                                 </button>
@@ -388,8 +379,7 @@ export default function Children() {
                                     children.map((child) => (
                                         <tr
                                             key={child._id}
-                                            className="border-b border-[#e5e1d8] last:border-b-0 hover:bg-[#faf9f4]"
-                                        >
+                                            className="border-b border-[#e5e1d8] last:border-b-0 hover:bg-[#faf9f4]">
                                             <td className="max-w-77.5 px-5 py-4">
                                                 <p className="font-medium text-[#19251c]">{child.fullName}</p>
                                                 <p className="mt-1 wrap-break-word text-xs leading-5 text-[#687367]">
@@ -411,8 +401,7 @@ export default function Children() {
                                                     className={`inline-flex rounded px-3 py-1 text-xs font-semibold ${child.status === "Active"
                                                             ? "bg-[#315337] text-white"
                                                             : "bg-[#ece9df] text-[#686b60]"
-                                                        }`}
-                                                >
+                                                        }`}>
                                                     {child.status}
                                                 </span>
                                             </td>
@@ -421,8 +410,7 @@ export default function Children() {
                                                     <button
                                                         type="button"
                                                         onClick={() => openEditModal(child)}
-                                                        className="inline-flex items-center gap-1.5 text-sm text-[#263b2b] hover:text-[#547a4f] focus:outline-none focus-visible:underline"
-                                                    >
+                                                        className="inline-flex items-center gap-1.5 text-sm text-[#263b2b] hover:text-[#547a4f] focus:outline-none focus-visible:underline">
                                                         <FiEdit2 size={17} />
                                                         Edit
                                                     </button>
@@ -430,8 +418,7 @@ export default function Children() {
                                                         <button
                                                             type="button"
                                                             onClick={() => openStatusConfirmation(child, "archive")}
-                                                            className="inline-flex items-center gap-1.5 text-sm text-[#26332a] hover:text-[#8c4b3e] focus:outline-none focus-visible:underline"
-                                                        >
+                                                            className="inline-flex items-center gap-1.5 text-sm text-[#26332a] hover:text-[#8c4b3e] focus:outline-none focus-visible:underline">
                                                             <FiArchive size={17} />
                                                             Archive
                                                         </button>
@@ -439,8 +426,7 @@ export default function Children() {
                                                         <button
                                                             type="button"
                                                             onClick={() => openStatusConfirmation(child, "restore")}
-                                                            className="inline-flex items-center gap-1.5 text-sm text-[#263b2b] hover:text-[#547a4f] focus:outline-none focus-visible:underline"
-                                                        >
+                                                            className="inline-flex items-center gap-1.5 text-sm text-[#263b2b] hover:text-[#547a4f] focus:outline-none focus-visible:underline">
                                                             <FiRotateCcw size={17} />
                                                             Restore
                                                         </button>
@@ -462,8 +448,7 @@ export default function Children() {
                             type="button"
                             onClick={loadChildren}
                             disabled={loading}
-                            className="inline-flex items-center gap-2 self-start font-medium text-[#315337] hover:underline disabled:opacity-50 sm:self-auto"
-                        >
+                            className="inline-flex items-center gap-2 self-start font-medium text-[#315337] hover:underline disabled:opacity-50 sm:self-auto">
                             <FiRotateCcw size={14} />
                             Refresh records
                         </button>
@@ -478,14 +463,12 @@ export default function Children() {
                         if (event.target === event.currentTarget && !statusUpdating) {
                             setStatusConfirmation(null);
                         }
-                    }}
-                >
+                    }}>
                     <section
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="status-confirmation-title"
-                        className="w-full max-w-md rounded-xl border border-[#dfddd3] bg-[#fffefd] p-5 shadow-2xl sm:p-6"
-                    >
+                        className="w-full max-w-md rounded-xl border border-[#dfddd3] bg-[#fffefd] p-5 shadow-2xl sm:p-6">
                         <div className="flex items-start gap-3">
                             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#e8eee4] text-[#315337]">
                                 {statusConfirmation.action === "restore" ? (
@@ -509,8 +492,7 @@ export default function Children() {
                                 onClick={() => setStatusConfirmation(null)}
                                 disabled={statusUpdating}
                                 aria-label="Close confirmation"
-                                className="rounded p-1 text-[#687367] hover:bg-[#efede5] disabled:opacity-50"
-                            >
+                                className="rounded p-1 text-[#687367] hover:bg-[#efede5] disabled:opacity-50">
                                 <FiX size={20} />
                             </button>
                         </div>
@@ -520,16 +502,14 @@ export default function Children() {
                                 type="button"
                                 onClick={() => setStatusConfirmation(null)}
                                 disabled={statusUpdating}
-                                className="min-h-10 rounded-md border border-[#d9d6cb] px-4 text-sm font-medium text-[#19251c] hover:bg-[#f3f1e9] disabled:opacity-50"
-                            >
+                                className="min-h-10 rounded-md border border-[#d9d6cb] px-4 text-sm font-medium text-[#19251c] hover:bg-[#f3f1e9] disabled:opacity-50">
                                 Cancel
                             </button>
                             <button
                                 type="button"
                                 onClick={changeStatus}
                                 disabled={statusUpdating}
-                                className="min-h-10 rounded-md bg-[#315337] px-4 text-sm font-medium text-white hover:bg-[#253f2b] disabled:cursor-not-allowed disabled:opacity-60"
-                            >
+                                className="min-h-10 rounded-md bg-[#315337] px-4 text-sm font-medium text-white hover:bg-[#253f2b] disabled:cursor-not-allowed disabled:opacity-60">
                                 {statusUpdating
                                     ? "Please wait..."
                                     : statusConfirmation.action === "restore"
@@ -546,14 +526,12 @@ export default function Children() {
                     className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/55 p-3 sm:p-6"
                     onMouseDown={(event) => {
                         if (event.target === event.currentTarget) closeModal();
-                    }}
-                >
+                    }}>
                     <section
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="child-modal-title"
-                        className="my-auto w-full max-w-162.5 rounded-lg border border-[#dfddd3] bg-[#f8f6f0] p-5 shadow-2xl sm:p-8"
-                    >
+                        className="my-auto w-full max-w-162.5 rounded-lg border border-[#dfddd3] bg-[#f8f6f0] p-5 shadow-2xl sm:p-8">
                         <div className="flex items-start justify-between gap-4">
                             <div>
                                 <h2 id="child-modal-title" className="text-xl font-semibold text-[#19251c] sm:text-2xl">
@@ -568,8 +546,7 @@ export default function Children() {
                                 onClick={closeModal}
                                 disabled={saving}
                                 aria-label="Close form"
-                                className="rounded p-1 text-[#687367] hover:bg-[#eae7dd] disabled:opacity-50"
-                            >
+                                className="rounded p-1 text-[#687367] hover:bg-[#eae7dd] disabled:opacity-50">
                                 <FiX size={22} />
                             </button>
                         </div>
@@ -587,8 +564,7 @@ export default function Children() {
                                     required
                                     maxLength={100}
                                     autoFocus
-                                    className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-4 text-sm outline-none transition focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
-                                />
+                                    className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-4 text-sm outline-none transition focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"/>
                             </div>
 
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -604,8 +580,7 @@ export default function Children() {
                                         onChange={handleChange}
                                         required
                                         max={getDateInputValue(new Date())}
-                                        className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
-                                    />
+                                        className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"/>
                                 </div>
                                 <div>
                                     <label htmlFor="gender" className="mb-1.5 block text-sm font-medium text-[#19251c]">
@@ -617,8 +592,7 @@ export default function Children() {
                                         value={form.gender}
                                         onChange={handleChange}
                                         required
-                                        className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
-                                    >
+                                        className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]">
                                         <option value="Girl">Girl</option>
                                         <option value="Boy">Boy</option>
                                         <option value="Other">Other</option>
@@ -640,8 +614,7 @@ export default function Children() {
                                         required
                                         min={form.dateOfBirth || undefined}
                                         max={getDateInputValue(new Date())}
-                                        className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
-                                    />
+                                        className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"/>
                                 </div>
                                 <div>
                                     <label htmlFor="guardianName" className="mb-1.5 block text-sm font-medium text-[#19251c]">
@@ -654,8 +627,7 @@ export default function Children() {
                                         onChange={handleChange}
                                         maxLength={150}
                                         placeholder="Name · phone"
-                                        className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none placeholder:text-[#7a8177] focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
-                                    />
+                                        className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none placeholder:text-[#7a8177] focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"/>
                                 </div>
                             </div>
 
@@ -671,8 +643,7 @@ export default function Children() {
                                     maxLength={2000}
                                     rows={3}
                                     placeholder="Optional notes"
-                                    className="w-full resize-y rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 py-3 text-sm outline-none placeholder:text-[#7a8177] focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
-                                />
+                                    className="w-full resize-y rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 py-3 text-sm outline-none placeholder:text-[#7a8177] focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"/>
                             </div>
 
                             {error && (
@@ -686,15 +657,13 @@ export default function Children() {
                                     type="button"
                                     onClick={closeModal}
                                     disabled={saving}
-                                    className="min-h-11 rounded-md border border-[#d9d6cb] bg-[#fffefd] px-5 text-sm font-medium text-[#19251c] hover:bg-[#efede5] disabled:opacity-50"
-                                >
+                                    className="min-h-11 rounded-md border border-[#d9d6cb] bg-[#fffefd] px-5 text-sm font-medium text-[#19251c] hover:bg-[#efede5] disabled:opacity-50">
                                     Cancel
                                 </button>
                                 <button
                                     type="submit"
                                     disabled={saving}
-                                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[#315337] px-5 text-sm font-medium text-white hover:bg-[#253f2b] disabled:cursor-not-allowed disabled:opacity-60"
-                                >
+                                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[#315337] px-5 text-sm font-medium text-white hover:bg-[#253f2b] disabled:cursor-not-allowed disabled:opacity-60">
                                     {saving ? "Saving..." : editingChild ? "Save changes" : "Add record"}
                                 </button>
                             </div>

@@ -346,14 +346,10 @@ export default function Dashboard() {
                                 {dashboard.donations.map((donation, index) => (
                                     <RecentDonation
                                         key={donation._id || donation.donationId || index}
-                                        donation={donation}
-                                    />
+                                        donation={donation}/>
                                 ))}
                                 <div className="px-5 py-3 sm:px-6">
-                                    <Link
-                                        to="/donations"
-                                        className="text-sm font-semibold text-[#35563a] hover:underline"
-                                    >
+                                    <Link to="/donations" className="text-sm font-semibold text-[#35563a] hover:underline">
                                         View all donations →
                                     </Link>
                                 </div>
@@ -371,14 +367,12 @@ export default function Dashboard() {
                                 {dashboard.expenses.map((expense, index) => (
                                     <RecentExpense
                                         key={expense._id || expense.expenseId || index}
-                                        expense={expense}
-                                    />
+                                        expense={expense}/>
                                 ))}
                                 <div className="px-5 py-3 sm:px-6">
                                     <Link
                                         to="/expenses"
-                                        className="text-sm font-semibold text-[#35563a] hover:underline"
-                                    >
+                                        className="text-sm font-semibold text-[#35563a] hover:underline">
                                         View all expenses →
                                     </Link>
                                 </div>

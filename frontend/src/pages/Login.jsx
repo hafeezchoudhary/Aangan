@@ -53,7 +53,6 @@ export default function Login() {
             }
 
             // The JWT is stored in an HttpOnly cookie by the backend.
-            // Do not save the JWT in localStorage.
             setPassword("");
             navigate("/dashboard", { replace: true });
         } catch (err) {
@@ -73,18 +72,15 @@ export default function Login() {
             <section className="relative hidden min-h-screen flex-col overflow-hidden bg-brand-dark px-7 py-8 text-on-dark lg:flex lg:px-14 xl:px-20">
                 <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute -right-24 top-24 h-72 w-72 rounded-full border border-white/10 sm:h-96 sm:w-96"
-                />
+                    className="pointer-events-none absolute -right-24 top-24 h-72 w-72 rounded-full border border-white/10 sm:h-96 sm:w-96"/>
                 <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute -right-12 top-36 h-56 w-56 rounded-full border border-white/10 sm:h-72 sm:w-72"
-                />
+                    className="pointer-events-none absolute -right-12 top-36 h-56 w-56 rounded-full border border-white/10 sm:h-72 sm:w-72"/>
 
                 <Link
                     to="/"
                     aria-label="Aaangan home"
-                    className="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl rounded-bl-sm border border-white/10 bg-brand-dark text-brand-light transition hover:bg-brand-hover"
-                >
+                    className="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl rounded-bl-sm border border-white/10 bg-brand-dark text-brand-light transition hover:bg-brand-hover">
                     <LuSprout size={25} strokeWidth={1.7} />
                 </Link>
 
@@ -125,8 +121,7 @@ export default function Login() {
                 <div className="w-full max-w-102.5">
                     <Link
                         to="/"
-                        className="mb-10 inline-flex items-center gap-2 text-sm text-body transition hover:text-brand sm:mb-14"
-                    >
+                        className="mb-10 inline-flex items-center gap-2 text-sm text-body transition hover:text-brand sm:mb-14">
                         <FiArrowLeft size={17} />
                         Back to home
                     </Link>
@@ -149,16 +144,12 @@ export default function Login() {
                         <div>
                             <label
                                 htmlFor="username"
-                                className="mb-2 block text-sm font-medium text-heading"
-                            >
+                                className="mb-2 block text-sm font-medium text-heading">
                                 Admin username
                             </label>
 
                             <div className="group flex h-13 items-center gap-3 rounded-lg border border-border bg-surface/70 px-4 transition focus-within:border-brand focus-within:bg-surface focus-within:ring-4 focus-within:ring-brand/10">
-                                <FiUser
-                                    className="shrink-0 text-body group-focus-within:text-brand"
-                                    size={18}
-                                />
+                                <FiUser className="shrink-0 text-body group-focus-within:text-brand" size={18}/>
 
                                 <input
                                     id="username"
@@ -170,24 +161,17 @@ export default function Login() {
                                     onChange={(event) => setUsername(event.target.value)}
                                     required
                                     disabled={loading}
-                                    className="h-full min-w-0 flex-1 bg-transparent text-sm text-heading outline-none placeholder:text-muted disabled:opacity-60"
-                                />
+                                    className="h-full min-w-0 flex-1 bg-transparent text-sm text-heading outline-none placeholder:text-muted disabled:opacity-60"/>
                             </div>
                         </div>
 
                         <div>
-                            <label
-                                htmlFor="password"
-                                className="mb-2 block text-sm font-medium text-heading"
-                            >
+                            <label htmlFor="password" className="mb-2 block text-sm font-medium text-heading">
                                 Password
                             </label>
 
                             <div className="group flex h-13 items-center gap-3 rounded-lg border border-border bg-surface/70 px-4 transition focus-within:border-brand focus-within:bg-surface focus-within:ring-4 focus-within:ring-brand/10">
-                                <FiLock
-                                    className="shrink-0 text-body group-focus-within:text-brand"
-                                    size={18}
-                                />
+                                <FiLock className="shrink-0 text-body group-focus-within:text-brand" size={18}/>
 
                                 <input
                                     id="password"
@@ -199,15 +183,13 @@ export default function Login() {
                                     onChange={(event) => setPassword(event.target.value)}
                                     required
                                     disabled={loading}
-                                    className="h-full min-w-0 flex-1 bg-transparent text-sm text-heading outline-none placeholder:text-muted disabled:opacity-60"
-                                />
+                                    className="h-full min-w-0 flex-1 bg-transparent text-sm text-heading outline-none placeholder:text-muted disabled:opacity-60"/>
 
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword((current) => !current)}
                                     aria-label={showPassword ? "Hide password" : "Show password"}
-                                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-body transition hover:bg-brand-soft hover:text-brand"
-                                >
+                                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-body transition hover:bg-brand-soft hover:text-brand">
                                     {showPassword ? (
                                         <FiEyeOff size={18} />
                                     ) : (
@@ -220,8 +202,7 @@ export default function Login() {
                         {error && (
                             <div
                                 role="alert"
-                                className="rounded-lg border border-danger/20 bg-danger-bg px-4 py-3 text-sm leading-5 text-danger"
-                            >
+                                className="rounded-lg border border-danger/20 bg-danger-bg px-4 py-3 text-sm leading-5 text-danger">
                                 {error}
                             </div>
                         )}
@@ -229,15 +210,11 @@ export default function Login() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="group flex h-13 w-full items-center justify-center gap-2 rounded-lg bg-brand px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-hover focus:outline-none focus:ring-4 focus:ring-brand/20 disabled:cursor-not-allowed disabled:opacity-70"
-                        >
+                            className="group flex h-13 w-full items-center justify-center gap-2 rounded-lg bg-brand px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-hover focus:outline-none focus:ring-4 focus:ring-brand/20 disabled:cursor-not-allowed disabled:opacity-70">
                             {loading ? "Signing you in..." : "Sign in to Aaangan"}
 
                             {!loading && (
-                                <FiArrowRight
-                                    size={17}
-                                    className="transition-transform group-hover:translate-x-1"
-                                />
+                                <FiArrowRight size={17} className="transition-transform group-hover:translate-x-1"/>
                             )}
                         </button>
                     </form>
