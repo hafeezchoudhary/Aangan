@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect, useState } from "react";
 import {
     FiArchive,
@@ -26,11 +25,8 @@ const EMPTY_FORM = {
 
 function getDateInputValue(value) {
     if (!value) return "";
-
     const date = new Date(value);
-
     if (Number.isNaN(date.getTime())) return "";
-
     return [
         date.getFullYear(),
         String(date.getMonth() + 1).padStart(2, "0"),
@@ -40,11 +36,8 @@ function getDateInputValue(value) {
 
 function formatDate(value) {
     if (!value) return "—";
-
     const date = new Date(value);
-
     if (Number.isNaN(date.getTime())) return "—";
-
     return date.toLocaleDateString("en-IN", {
         day: "2-digit",
         month: "short",
@@ -67,6 +60,8 @@ export default function Children() {
     const [notice, setNotice] = useState("");
     const [modalOpen, setModalOpen] = useState(false);
     const [editingChild, setEditingChild] = useState(null);
+    const [statusConfirmation, setStatusConfirmation] = useState(null);
+    const [statusUpdating, setStatusUpdating] = useState(false);
     const [form, setForm] = useState(EMPTY_FORM);
 
     const loadChildren = useCallback(async () => {
@@ -75,7 +70,6 @@ export default function Children() {
 
         try {
             const params = new URLSearchParams();
-
             if (search.trim()) params.set("search", search.trim());
             if (status !== "all") params.set("status", status);
 
@@ -144,7 +138,6 @@ export default function Children() {
 
     function closeModal() {
         if (saving) return;
-
         setModalOpen(false);
         setEditingChild(null);
         setForm(EMPTY_FORM);
@@ -153,7 +146,6 @@ export default function Children() {
 
     function handleChange(event) {
         const { name, value } = event.target;
-
         setForm((previous) => ({
             ...previous,
             [name]: value,
@@ -197,7 +189,6 @@ export default function Children() {
                     ? "Child record updated successfully."
                     : "Child record added successfully."
             );
-
             await loadChildren();
         } catch (err) {
             setError(
@@ -209,27 +200,26 @@ export default function Children() {
         }
     }
 
-    async function changeStatus(child, action) {
+    function openStatusConfirmation(child, action) {
+        setStatusConfirmation({ child, action });
+        setError("");
+        setNotice("");
+    }
+
+    async function changeStatus() {
+        if (!statusConfirmation || statusUpdating) return;
+
+        const { child, action } = statusConfirmation;
         const restoring = action === "restore";
 
-        const confirmed = window.confirm(
-            restoring
-                ? `Restore ${child.fullName}'s record to Active status?`
-                : `Archive ${child.fullName}'s record? The record will be retained for historical reference.`
-        );
-
-        if (!confirmed) return;
-
+        setStatusUpdating(true);
         setError("");
         setNotice("");
 
         try {
             const response = await fetch(
                 `${API_URL}/api/children/${child._id}/${action}`,
-                {
-                    method: "PATCH",
-                    credentials: "include",
-                }
+                { method: "PATCH", credentials: "include" }
             );
 
             const data = await response.json();
@@ -240,15 +230,18 @@ export default function Children() {
                 );
             }
 
+            setStatusConfirmation(null);
             setNotice(
                 restoring
                     ? "Child record restored successfully."
                     : "Child record archived successfully."
             );
-
             await loadChildren();
         } catch (err) {
+            setStatusConfirmation(null);
             setError(err.message || "Could not update the record.");
+        } finally {
+            setStatusUpdating(false);
         }
     }
 
@@ -260,11 +253,9 @@ export default function Children() {
                         <p className="text-xs font-semibold uppercase tracking-wide text-[#39553c]">
                             Records
                         </p>
-
                         <h1 className="mt-1 font-serif text-4xl font-medium tracking-tight text-[#19251c] sm:text-5xl">
                             Children
                         </h1>
-
                         <p className="mt-3 text-sm text-[#596257] sm:text-base">
                             {loading
                                 ? "Loading records..."
@@ -348,7 +339,6 @@ export default function Children() {
                         />
                     </label>
                 </section>
-
                 <section className="mt-5 overflow-hidden rounded-md border border-[#dfddd3] bg-[#fffefd]">
                     <div className="overflow-x-auto">
                         <table className="w-full min-w-[980px] border-collapse text-left">
@@ -362,27 +352,18 @@ export default function Children() {
                                     <th className="px-5 py-4 text-right">Actions</th>
                                 </tr>
                             </thead>
-
                             <tbody>
                                 {loading ? (
                                     <tr>
-                                        <td
-                                            colSpan={6}
-                                            className="px-5 py-14 text-center text-sm text-[#697165]"
-                                        >
+                                        <td colSpan={6} className="px-5 py-14 text-center text-sm text-[#697165]">
                                             Loading child records...
                                         </td>
                                     </tr>
                                 ) : children.length === 0 ? (
                                     <tr>
-                                        <td
-                                            colSpan={6}
-                                            className="px-5 py-14 text-center"
-                                        >
+                                        <td colSpan={6} className="px-5 py-14 text-center">
                                             <p className="text-base font-medium text-[#19251c]">
-                                                {error
-                                                    ? "Records could not be loaded"
-                                                    : "No child records found"}
+                                                {error ? "Records could not be loaded" : "No child records found"}
                                             </p>
                                             <p className="mt-2 text-sm text-[#777c71]">
                                                 {error
@@ -410,29 +391,21 @@ export default function Children() {
                                             className="border-b border-[#e5e1d8] last:border-b-0 hover:bg-[#faf9f4]"
                                         >
                                             <td className="max-w-[310px] px-5 py-4">
-                                                <p className="font-medium text-[#19251c]">
-                                                    {child.fullName}
-                                                </p>
+                                                <p className="font-medium text-[#19251c]">{child.fullName}</p>
                                                 <p className="mt-1 break-words text-xs leading-5 text-[#687367]">
-                                                    {child.childId || "ID pending"}
-                                                    {" · "}
-                                                    {child.gender}
+                                                    {child.childId || "ID pending"} · {child.gender}
                                                     {child.notes ? ` · ${child.notes}` : ""}
                                                 </p>
                                             </td>
-
                                             <td className="whitespace-nowrap px-4 py-4 text-sm text-[#19251c]">
                                                 {formatDate(child.dateOfBirth)}
                                             </td>
-
                                             <td className="whitespace-nowrap px-4 py-4 text-sm text-[#19251c]">
                                                 {formatDate(child.admissionDate)}
                                             </td>
-
                                             <td className="max-w-[200px] break-words px-4 py-4 text-sm text-[#19251c]">
                                                 {child.guardianName || "—"}
                                             </td>
-
                                             <td className="px-4 py-4">
                                                 <span
                                                     className={`inline-flex rounded px-3 py-1 text-xs font-semibold ${child.status === "Active"
@@ -443,7 +416,6 @@ export default function Children() {
                                                     {child.status}
                                                 </span>
                                             </td>
-
                                             <td className="px-5 py-4">
                                                 <div className="flex items-center justify-end gap-4">
                                                     <button
@@ -454,13 +426,10 @@ export default function Children() {
                                                         <FiEdit2 size={17} />
                                                         Edit
                                                     </button>
-
                                                     {child.status === "Active" ? (
                                                         <button
                                                             type="button"
-                                                            onClick={() =>
-                                                                changeStatus(child, "archive")
-                                                            }
+                                                            onClick={() => openStatusConfirmation(child, "archive")}
                                                             className="inline-flex items-center gap-1.5 text-sm text-[#26332a] hover:text-[#8c4b3e] focus:outline-none focus-visible:underline"
                                                         >
                                                             <FiArchive size={17} />
@@ -469,9 +438,7 @@ export default function Children() {
                                                     ) : (
                                                         <button
                                                             type="button"
-                                                            onClick={() =>
-                                                                changeStatus(child, "restore")
-                                                            }
+                                                            onClick={() => openStatusConfirmation(child, "restore")}
                                                             className="inline-flex items-center gap-1.5 text-sm text-[#263b2b] hover:text-[#547a4f] focus:outline-none focus-visible:underline"
                                                         >
                                                             <FiRotateCcw size={17} />
@@ -489,10 +456,8 @@ export default function Children() {
 
                     <div className="flex flex-col gap-2 border-t border-[#dfddd3] px-5 py-3 text-xs text-[#777c71] sm:flex-row sm:items-center sm:justify-between">
                         <span>
-                            {children.length} {children.length === 1 ? "record" : "records"}
-                            {" displayed"}
+                            {children.length} {children.length === 1 ? "record" : "records"} displayed
                         </span>
-
                         <button
                             type="button"
                             onClick={loadChildren}
@@ -505,6 +470,76 @@ export default function Children() {
                     </div>
                 </section>
             </div>
+
+            {statusConfirmation && (
+                <div
+                    className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4"
+                    onMouseDown={(event) => {
+                        if (event.target === event.currentTarget && !statusUpdating) {
+                            setStatusConfirmation(null);
+                        }
+                    }}
+                >
+                    <section
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="status-confirmation-title"
+                        className="w-full max-w-md rounded-xl border border-[#dfddd3] bg-[#fffefd] p-5 shadow-2xl sm:p-6"
+                    >
+                        <div className="flex items-start gap-3">
+                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#e8eee4] text-[#315337]">
+                                {statusConfirmation.action === "restore" ? (
+                                    <FiRotateCcw size={20} />
+                                ) : (
+                                    <FiArchive size={20} />
+                                )}
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <h2 id="status-confirmation-title" className="text-lg font-semibold text-[#19251c]">
+                                    {statusConfirmation.action === "restore" ? "Restore child?" : "Archive child?"}
+                                </h2>
+                                <p className="mt-2 text-sm leading-6 text-[#596257]">
+                                    {statusConfirmation.action === "restore"
+                                        ? `Restore ${statusConfirmation.child.fullName}'s record to the Active list?`
+                                        : `${statusConfirmation.child.fullName}'s record will move to Archived. You can restore it later.`}
+                                </p>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => setStatusConfirmation(null)}
+                                disabled={statusUpdating}
+                                aria-label="Close confirmation"
+                                className="rounded p-1 text-[#687367] hover:bg-[#efede5] disabled:opacity-50"
+                            >
+                                <FiX size={20} />
+                            </button>
+                        </div>
+
+                        <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+                            <button
+                                type="button"
+                                onClick={() => setStatusConfirmation(null)}
+                                disabled={statusUpdating}
+                                className="min-h-10 rounded-md border border-[#d9d6cb] px-4 text-sm font-medium text-[#19251c] hover:bg-[#f3f1e9] disabled:opacity-50"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="button"
+                                onClick={changeStatus}
+                                disabled={statusUpdating}
+                                className="min-h-10 rounded-md bg-[#315337] px-4 text-sm font-medium text-white hover:bg-[#253f2b] disabled:cursor-not-allowed disabled:opacity-60"
+                            >
+                                {statusUpdating
+                                    ? "Please wait..."
+                                    : statusConfirmation.action === "restore"
+                                        ? "Restore child"
+                                        : "Archive child"}
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            )}
 
             {modalOpen && (
                 <div
@@ -521,17 +556,13 @@ export default function Children() {
                     >
                         <div className="flex items-start justify-between gap-4">
                             <div>
-                                <h2
-                                    id="child-modal-title"
-                                    className="text-xl font-semibold text-[#19251c] sm:text-2xl"
-                                >
+                                <h2 id="child-modal-title" className="text-xl font-semibold text-[#19251c] sm:text-2xl">
                                     {editingChild ? "Edit record" : "Add a record"}
                                 </h2>
                                 <p className="mt-1 text-sm leading-6 text-[#687367]">
                                     Child records are saved securely to the home&apos;s database.
                                 </p>
                             </div>
-
                             <button
                                 type="button"
                                 onClick={closeModal}
@@ -545,10 +576,7 @@ export default function Children() {
 
                         <form onSubmit={handleSubmit} className="mt-6 space-y-5">
                             <div>
-                                <label
-                                    htmlFor="fullName"
-                                    className="mb-1.5 block text-sm font-medium text-[#19251c]"
-                                >
+                                <label htmlFor="fullName" className="mb-1.5 block text-sm font-medium text-[#19251c]">
                                     Full name <span className="text-red-700">*</span>
                                 </label>
                                 <input
@@ -565,10 +593,7 @@ export default function Children() {
 
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                 <div>
-                                    <label
-                                        htmlFor="dateOfBirth"
-                                        className="mb-1.5 block text-sm font-medium text-[#19251c]"
-                                    >
+                                    <label htmlFor="dateOfBirth" className="mb-1.5 block text-sm font-medium text-[#19251c]">
                                         Date of birth <span className="text-red-700">*</span>
                                     </label>
                                     <input
@@ -582,12 +607,8 @@ export default function Children() {
                                         className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
                                     />
                                 </div>
-
                                 <div>
-                                    <label
-                                        htmlFor="gender"
-                                        className="mb-1.5 block text-sm font-medium text-[#19251c]"
-                                    >
+                                    <label htmlFor="gender" className="mb-1.5 block text-sm font-medium text-[#19251c]">
                                         Gender <span className="text-red-700">*</span>
                                     </label>
                                     <select
@@ -607,10 +628,7 @@ export default function Children() {
 
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                 <div>
-                                    <label
-                                        htmlFor="admissionDate"
-                                        className="mb-1.5 block text-sm font-medium text-[#19251c]"
-                                    >
+                                    <label htmlFor="admissionDate" className="mb-1.5 block text-sm font-medium text-[#19251c]">
                                         Admission date <span className="text-red-700">*</span>
                                     </label>
                                     <input
@@ -625,12 +643,8 @@ export default function Children() {
                                         className="min-h-11 w-full rounded-md border border-[#d9d6cb] bg-[#fffefd] px-3 text-sm outline-none focus:border-[#688763] focus:ring-1 focus:ring-[#688763]"
                                     />
                                 </div>
-
                                 <div>
-                                    <label
-                                        htmlFor="guardianName"
-                                        className="mb-1.5 block text-sm font-medium text-[#19251c]"
-                                    >
+                                    <label htmlFor="guardianName" className="mb-1.5 block text-sm font-medium text-[#19251c]">
                                         Guardian contact
                                     </label>
                                     <input
@@ -646,10 +660,7 @@ export default function Children() {
                             </div>
 
                             <div>
-                                <label
-                                    htmlFor="notes"
-                                    className="mb-1.5 block text-sm font-medium text-[#19251c]"
-                                >
+                                <label htmlFor="notes" className="mb-1.5 block text-sm font-medium text-[#19251c]">
                                     Notes
                                 </label>
                                 <textarea
@@ -665,10 +676,7 @@ export default function Children() {
                             </div>
 
                             {error && (
-                                <div
-                                    role="alert"
-                                    className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
-                                >
+                                <div role="alert" className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
                                     {error}
                                 </div>
                             )}
@@ -682,19 +690,12 @@ export default function Children() {
                                 >
                                     Cancel
                                 </button>
-
                                 <button
                                     type="submit"
                                     disabled={saving}
                                     className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[#315337] px-5 text-sm font-medium text-white hover:bg-[#253f2b] disabled:cursor-not-allowed disabled:opacity-60"
                                 >
-                                    {saving ? (
-                                        "Saving..."
-                                    ) : (
-                                        <>
-                                            {editingChild ? "Save changes" : "Add record"}
-                                        </>
-                                    )}
+                                    {saving ? "Saving..." : editingChild ? "Save changes" : "Add record"}
                                 </button>
                             </div>
                         </form>
