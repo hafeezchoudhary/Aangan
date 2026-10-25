@@ -10,6 +10,7 @@ const authRoutes = require("./routes/authRoutes");
 const childRoutes = require("./routes/childRoutes");
 const donationRoutes = require("./routes/donationRoutes");
 const expenseRoutes = require("./routes/expenseRoutes");
+const reportRoutes = require("./routes/reportRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
 
 const app = express();
@@ -46,6 +47,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/children", childRoutes);
 app.use("/api/donations", donationRoutes);
 app.use("/api/expenses", expenseRoutes);
+app.use("/api/reports", reportRoutes);
 
 // Protected authentication test
 app.get("/api/auth/protected", authMiddleware, (req, res) => {
