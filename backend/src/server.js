@@ -1,4 +1,3 @@
-
 require("dotenv").config();
 
 const express = require("express");
@@ -7,6 +6,7 @@ const cookieParser = require("cookie-parser");
 
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
+const childRoutes = require("./routes/childRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
 
 const app = express();
@@ -36,6 +36,8 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+
+app.use("/api/children", childRoutes);
 
 app.get("/api/auth/protected", authMiddleware, (req, res) => {
     res.json({
